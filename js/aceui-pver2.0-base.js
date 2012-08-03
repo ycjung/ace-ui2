@@ -14,6 +14,7 @@
   */
 // Start with the map page
 window.location.replace(window.location.href.split("#")[0] + "#mappage");
+
 // original
 var selectedFeature = null;
 
@@ -65,16 +66,8 @@ $(document).ready(function() {
 			map.zoomOut();
 		}        
     });
-	/*
-    $("#locate").click(function(){
-        var control = map.getControlsBy("id", "locate-control")[0];
-        if (control.active) {
-            control.getCurrentLocation();
-        } else {
-            control.activate();
-        }
-    });
-	*/
+
+	
     // popup page show
     $('#popup').live('pageshow',function(event, ui){
 		
@@ -101,7 +94,7 @@ $(document).ready(function() {
 	// search page show
     $('#searchpage').live('pageshow',function(event, ui){
 		// transform lon/lat to this coord system for raw-data1 version
-		_initFeatureData();
+		//_initFeatureData(); // called at map.js
 		// initialize dropdown box at search page
 		_initDropdownBox();
 		// first row
@@ -109,11 +102,12 @@ $(document).ready(function() {
 		// search button clicked
 		$('#searchfeature').click(function(e){
 			_clearSearchResults();
+			// search
 			_searchContents();	
 
             // Prevent form send
             e.preventDefault();			
-
+			// display searched list
 			var data = selectedFeaturesObj;
 			displaySearchItems(data);
 		});
@@ -136,11 +130,12 @@ $(document).ready(function() {
 	// data tool export page show
     $('#datatoolsexportpage').live('pageshow',function(event, ui){
 
+	
 		if(datacartFeaturesObj.features.length == 0){
 			// first row
 			displayDataCartTopRow();
 		}
-		
+				
 		// button of refresh items in list
 		$('#refreshItemsInQueue').click(function(e){
 			clearQueueList();
@@ -157,6 +152,8 @@ $(document).ready(function() {
 	
 	//init data cart
 	resetDatacart();
+
+	//alert('2');
 
 });
 
@@ -219,10 +216,13 @@ function _getItemList(){
 // numeric validation in textbox
 function numeric_validation(e){
 	var unicode=e.charCode? e.charCode : e.keyCode;
+	//alert(unicode);
 	if (unicode!=8 //backspace
+		&& (unicode != 45) //dash key and subtract in number pad, why?
 		&& (unicode != 46) //delete key
-		&& (unicode != 109) //subtract
-		&& (unicode != 188) //comma
+		&& (unicode != 109) //subtract number pad 
+		&& (unicode != 189) //dash as subtract
+		&& (unicode != 188) //period, not comma
 	){
 		if (unicode<48||unicode>57) //if not a number
 			return false; //disable key press

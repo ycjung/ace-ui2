@@ -22,7 +22,6 @@ var targetLayerName = "Searched Items";
 var datacartFeatureLayer;
 var dctargetLayerName = "Data Cart Items";
 
-
 // init
 var init = function (onSelectFeatureFunction) {
 	// vector layer for locate - not used
@@ -226,9 +225,12 @@ var init = function (onSelectFeatureFunction) {
         map.zoomToExtent(vector.getDataExtent());
     });
 	*/
+	
+	//alert('3');
+	_initFeatureData();//should call one-time
+	_showAllDataToMap();
 				
 };
-
 
 
 

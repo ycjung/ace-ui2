@@ -18,6 +18,24 @@ function getDCInitFeatures() {
 	var reader = new OpenLayers.Format.GeoJSON();
 	return reader.read(datacartFeaturesObj);
 }
+// get all data 
+function _searchAllData(){
+	
+	selectedFeaturesObj = _resetSelectedFeaturesObj();
+	_clearSearchResults();
+	for(var i =0; i<features.features.length; i++ ){
+		selectedFeaturesObj.features.push(features.features[i]);
+	}
+	
+	// update map 
+	_updatePlot(selectedFeaturesObj);
+	
+}
+function _showAllDataToMap(){
+	
+	_searchAllData();
+}
+
 // get data with given search options
 function _searchData(searchValueArray){
 	

@@ -104,9 +104,16 @@ function displaySearchItems(data){
 			$('<li>')
 				.hide()
 				.attr('id', item_right_li_id)
-				.append($('<h2 />', {
-					text: '['+(i+1)+'] '+place.properties.datakey
-				}))
+				.append($('<h3 />', {
+					html: '['+(i+1)+'] '+place.properties.datakey 
+						+'&nbsp;&nbsp;&nbsp;<button type="submit" onclick'
+						+'="moveThisItemToDataCart(\''+item_left_li_chkbox_id+'\');">keep item</button>'
+						+'&nbsp;<button type="submit" onclick='
+						+'" $.mobile.changePage(\'#mappage\');'
+						+' var lonlatsrc1 = new OpenLayers.LonLat('+lonlattrans.lon+','+lonlattrans.lat+'); '
+						+' map.setCenter(lonlatsrc1.transform(fromProjection,toProjection), 10); "'
+						+'>view map</button>'						
+				}))				
 				.append($('<p />', {
 					html: '<b>' + '- Country :' + '</b> ' + place.properties.Country
 				}))
@@ -133,6 +140,7 @@ function displaySearchItems(data){
 					html: '<b>' + '- Planting/Harvesting Year :' + '</b> ' + place.properties.PlantingYear +' / '+ place.properties.HarvestYear
 				}))						
 				.appendTo('#search_results')
+				/*
 				.click(function() {
 					$.mobile.changePage('#mappage');
 					//var lonlatsrc1 = new OpenLayers.LonLat(-71,42);
@@ -141,6 +149,7 @@ function displaySearchItems(data){
 					//alert(lonlattrans.lon+'/'+lonlattrans.lat);
 					map.setCenter(lonlatsrc1.transform(fromProjection,toProjection), 10);
 				})
+				*/
 				.show();
 		});
 	}
@@ -183,6 +192,8 @@ function _searchContents(){
 	var locationCategory = $('#locationCB').is(':checked');
 	var cropCategory = $('#cropCB').is(':checked');
 	var dateCategory = $('#phdateCB').is(':checked');
+	var anyCatSelected = false; // if FALSE, show all
+	
 	/** location cat */
 	if(locationCategory){
 		var dirtyFlg = false;
@@ -204,13 +215,16 @@ function _searchContents(){
 			dirtyFlg = true;		
 		}
 		
-		if(dirtyFlg)
+		if(dirtyFlg){
 			optionValueArray.options[0].LocationCat = true;
-		else
+			anyCatSelected = true;
+		}else{
 			optionValueArray.options[0].LocationCat = false;
+		}
 	}else{
-		optionValueArray.options[0].LocationCat = false;
+		optionValueArray.options[0].LocationCat = false;		
 	}
+	
 	/** crop cat */
 	if(cropCategory){
 		var dirtyFlg = false;
@@ -223,13 +237,16 @@ function _searchContents(){
 			dirtyFlg = true;
 		}	
 		
-		if(dirtyFlg)
+		if(dirtyFlg){
 			optionValueArray.options[1].CropCat = true;
-		else
+			anyCatSelected = true;
+		}else{
 			optionValueArray.options[1].CropCat = false;		
+		}
 	}else{
 		optionValueArray.options[1].CropCat = false;
 	}
+
 	/** date cat */
 	if(dateCategory){
 		var dirtyFlg = false;
@@ -248,16 +265,22 @@ function _searchContents(){
 			dirtyFlg = true;
 		}		
 		
-		if(dirtyFlg)
+		if(dirtyFlg){
 			optionValueArray.options[2].DateCat = true;
-		else
+			anyCatSelected = true;
+		}else{
 			optionValueArray.options[2].DateCat = false;		
+		}
 	}else{
 		optionValueArray.options[2].DateCat = false;
 	}
-	
+
 	// search data
-	_searchData(optionValueArray);
+	if(anyCatSelected){	
+		_searchData(optionValueArray);		
+	}else{
+		_searchAllData();
+	}
 }	
 
 /**
@@ -302,6 +325,18 @@ function remove_selected_search_result(){
 		}	
 	});	
 	if(isUpdated) updateSearchedItem();
+}
+function remove_search_result(chkboxId){
+
+	var leftLidId = _getSearchItemLeftLiIDFromChkboxId(chkboxId);	
+	var rightLidId = _getSearchItemRightLiIDFromChkboxId(chkboxId);
+	var datakey = _getSearchItemDatakeyFromChkboxId(chkboxId);
+	//remove ui
+	$('#'+leftLidId).remove();//remove li of checkbox
+	$('#'+rightLidId).remove();//remove li of item			
+	//remove item	
+	_removeDataFromSelectedObject(datakey);
+	updateSearchedItem();
 }
 function remove_all_search_result(){
 	var isUpdated = false;
@@ -349,7 +384,21 @@ function exeAddSelectionsToQueue(){
 		updateDatacartList();
 	}
 }
+// add to datacart and remove from list when the 'keep item' btn is clicked
+function moveThisItemToDataCart(chkboxId){
 
+	var datakey = _getSearchItemDatakeyFromChkboxId(chkboxId);
+	var datakeys = [];
+	datakeys.push(datakey);
+	var itemnumber = _addDataToDatacartObject(datakeys);
+	alert('['+itemnumber+'] data are added to queue in data tool page.');
+
+	remove_search_result(chkboxId);
+	// update map of datacart item
+	updateDataCartItem();
+	// update datacart item
+	updateDatacartList();
+}
 /**
  * form
  */
