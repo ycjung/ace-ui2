@@ -54,13 +54,13 @@ body {
     background-image: url(img/locate.png);
 }
 .ui-icon-layers {
-    background-image: url(img/openlayers.png);
+    background-image: url(../img/openlayers.png);
 }
 .ui-icon-datatool {
-    background-image: url(img/datatool.png);
+    background-image: url(../img/datatool.png);
 }
 .ui-icon-userguide {
-    background-image: url(img/userguide.png);
+    background-image: url(../img/userguide.png);
 }
 .ui-content .ui-listview-inset, #search_results{
     margin: 1em;
