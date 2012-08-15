@@ -38,7 +38,16 @@ $(document).ready(function() {
             // initialize map
             init(function(feature) { 
                 selectedFeature = feature; 
-                $.mobile.changePage("#popup", "pop"); 
+				if(feature.cluster && feature.attributes.count>1) {
+					//alert('cluster scale 1: ' + map.getZoom());//2
+					var preZoomLevel = map.getZoom();
+					var bounds = selectedFeature.geometry.getBounds().clone(); 
+					map.zoomToExtent(bounds,false);
+					//alert('cluster scale 2: ' + map.getZoom());//18
+					map.zoomTo(preZoomLevel+3);					
+				}else {
+					$.mobile.changePage("#popup", "pop");
+				}				
             });
             _initLayerList();
         }
