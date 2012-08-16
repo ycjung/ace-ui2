@@ -8,3 +8,5 @@ update at Aug-15, 2012
 
 2. fix bug: lost image icons in main page
 
+3. user guide page is filled with some contents.
+
