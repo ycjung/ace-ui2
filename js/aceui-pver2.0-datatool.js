@@ -69,6 +69,58 @@ function _removeDataFromDatacartObject(datakey){
 	}
 }
 
+function downloaddata(){
+    //alert('data export called');
+    var exportQuery = {'datakey':[],'model':[]};
+    var datakeys = [];
+    $('#datacart_items_chkbox').find(':input').each(function(){
+            switch(this.type){
+                    case 'checkbox': 
+                            if($(this).is(':checked')){
+                                    var chkboxId = $(this).attr('id');//ex) itemDatakey+'_li_chkbox'
+                                    var datakey = _getDatakeyFromDatacartChkboxID(chkboxId);
+                                    datakeys.push(datakey);
+                            }
+            }	
+    });
+
+    var itemnumber = datakeys.length;
+    
+    // datakey check   
+    if(itemnumber>0){
+            //alert('found export items : ' + itemnumber);
+            for(var ii=0; ii<itemnumber; ii++){
+                exportQuery.datakey.push(datakeys[ii]);
+            }
+    }else{
+        alert('Select data first at left list, and try again.');
+        return;
+    }
+    
+    // model check
+    var chk_apsim = $('#export-apsim').is(':checked');
+    var chk_aquacrop = $('#export-aquacrop').is(':checked');
+    var chk_stics = $('#export-stics').is(':checked');
+    var chk_dssat = $('#export-dssat').is(':checked');
+    var chk_wofost = $('#export-wofost').is(':checked');
+    
+    if( chk_apsim || chk_aquacrop || chk_stics || chk_dssat || chk_wofost ){
+        if(chk_apsim) exportQuery.model.push('APSIM');
+        if(chk_aquacrop) exportQuery.model.push('AquaCrop');
+        if(chk_stics) exportQuery.model.push('STICS');
+        if(chk_dssat) exportQuery.model.push('DSSAT');
+        if(chk_wofost) exportQuery.model.push('WOFOST');
+
+    }else{
+        alert('Select model formats for exporting data, and try again.');
+        return;
+    }
+    
+    // send message to server
+    _exportData(exportQuery);
+    
+    
+}
 /**
  * display
  */

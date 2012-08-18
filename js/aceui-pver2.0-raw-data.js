@@ -1,9 +1,23 @@
 
 /**
  * transform lon/lat to this coord system for raw-data1 version
- * called at *-base.js at ln:87 
+ * called at *-map.js
  */
 function _initFeatureData(){
+	for(var i = 0; i<features.features.length;i++){
+		//var place = features.features;
+		var lonlatsrc = new OpenLayers.LonLat(features.features[i].geometry.coordinates[0],
+				features.features[i].geometry.coordinates[1]);
+		var lonlattrans = lonlatsrc.transform(fromProjection,toProjection);
+		
+		features.features[i].geometry.coordinates.splice(1,1);
+		features.features[i].geometry.coordinates.splice(0,1);
+		
+		features.features[i].geometry.coordinates.push(lonlattrans.lon);
+		features.features[i].geometry.coordinates.push(lonlattrans.lat);
+	}
+}
+function _initFeatureLonLatData(features){
 	for(var i = 0; i<features.features.length;i++){
 		//var place = features.features;
 		var lonlatsrc = new OpenLayers.LonLat(features.features[i].geometry.coordinates[0],

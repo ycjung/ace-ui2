@@ -35,11 +35,55 @@ function _showAllDataToMap(){
 	
 	_searchAllData();
 }
+function _formToJSON(searchValueArray){
+    // example : var query = {"country":"Niger", "lon":"", "lat":"", "crop":"", "plantyear":"", "harvestyear":""};
+    var query = {"country":"", "lon":"", "lat":"", "crop":"", "plantyear":"", "harvestyear":""};
+    
+    if(searchValueArray.options[0].LocationCat){
+        if(searchValueArray.options[0].Child[0].Country){
+            query.country = searchValueArray.options[0].Child[0].Fvalue;
+        }
+        if(searchValueArray.options[0].Child[1].LonLat){	
+            var lonlatsrc = new OpenLayers.LonLat(features.features[i].geometry.coordinates[0],
+                            features.features[i].geometry.coordinates[1]);					
+            var lonlattrans = lonlatsrc.transform(toProjection,fromProjection);
+
+            var lon = new Number(searchValueArray.options[0].Child[1].Fvaluelon);
+            var lat = new Number(searchValueArray.options[0].Child[1].Fvaluelat);
+            
+            query.lon = ''+lon;
+            query.lat = ''+lat;
+        }
+    }
+    
+    if(searchValueArray.options[1].CropCat){
+        if(searchValueArray.options[1].Child[0].Crop){
+            query.crop = searchValueArray.options[1].Child[0].Fvalue;
+        }
+    }
+    
+    if(searchValueArray.options[2].DateCat){
+        if(searchValueArray.options[2].Child[0].PlantingYear){
+            query.plantyear = searchValueArray.options[2].Child[0].Fvalue;
+        }
+        if(searchValueArray.options[2].Child[1].HarvestYear){
+            query.harvestyear = searchValueArray.options[2].Child[1].Fvalue;
+        }
+    }
+    return query;    
+}
 
 // get data with given search options
 function _searchData(searchValueArray){
 	
 	selectedFeaturesObj = _resetSelectedFeaturesObj();
+
+    if(isConnectedToWebServer){
+        //alert('search : connected');
+        var jsonFilter = _formToJSON(searchValueArray);
+        _sendSearch(jsonFilter);
+
+    }else{
 
 	var dirtyFlg = false;
 	var lonbuffer = 5.0;
@@ -132,8 +176,10 @@ function _searchData(searchValueArray){
 			}
 		}
 	}	
-	// update map 
+        // update map 
 	_updatePlot(selectedFeaturesObj);
+    }
+	
 }
 // update map
 function _updatePlot(selectedFeaturesObj){

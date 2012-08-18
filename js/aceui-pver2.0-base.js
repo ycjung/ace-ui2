@@ -118,6 +118,7 @@ $(document).ready(function() {
             e.preventDefault();			
 			// display searched list
 			var data = selectedFeaturesObj;
+                        
 			displaySearchItems(data);
 		});
 		
@@ -144,7 +145,16 @@ $(document).ready(function() {
 			// first row
 			displayDataCartTopRow();
 		}
-				
+		$('#downloaddata').click(function(e){
+                    if(isConnectedToWebServer){
+			downloaddata();
+                    }else{
+                        alert('[Under Construction]');
+                    }
+		});	
+                $('#requestdata').click(function(e){
+			alert('[Under Construction]');
+		});
 		// button of refresh items in list
 		$('#refreshItemsInQueue').click(function(e){
 			clearQueueList();
@@ -163,17 +173,28 @@ $(document).ready(function() {
 	resetDatacart();
 
 	//alert('2');
+        isConnected();
 
 });
+
 
 /**
  * search page
  */
 // initiate dropdown boxes for search options
 function _initDropdownBox(){
+    
+    if(isConnectedToWebServer){
+        
+        createCountryCombo();
+        createCropCombo();
+        //alert('size this? : ' + countryItemList.length);
+        
+    }else{
 	_getItemList();
 	//for country item list
 	for(var i=0;i<countryItemList.length;i++){
+            //alert('item : '+countryItemList[i].toString());
 		$('<option>'+countryItemList[i].toString()+'</option>').appendTo('#country');
 	}	
 	//for crop item list
@@ -181,6 +202,7 @@ function _initDropdownBox(){
 		var key = cropItemList[i].toString();
 		$('<option value=\''+key+'\'>'+getCropName(key)+'</option>').appendTo('#crop');
 	}		
+    }
 	//for planting year item list
 	for(var i=1970;i<2013;i++){
 		$('<option>'+i+'</option>').appendTo('#plantyear');
@@ -189,10 +211,12 @@ function _initDropdownBox(){
 	for(var i=1970;i<2013;i++){
 		$('<option>'+i+'</option>').appendTo('#harvestyear');
 	}	
+
 }
 var countryItemList = new Array();
 var cropItemList = new Array();
 function _getItemList(){
+
 	var isExist = false;
 	if(countryItemList.length == 0 || cropItemList.length == 0 ){
 		for(var i =0; i<features.features.length; i++ ){
@@ -221,6 +245,7 @@ function _getItemList(){
 	}else{
 		//alert('use exist list');
 	}
+        
 }
 // numeric validation in textbox
 function numeric_validation(e){

@@ -49,6 +49,7 @@ function _removeDataFromSelectedObject(datakey){
  * display
  */
 function displaySearchItems(data){
+    
 	if(data.features.length == 0){
 		$('<li>')
 			.hide()
@@ -79,11 +80,11 @@ function displaySearchItems(data){
 		// for each row of item	
 		$.each(data.features, function(i) {
 			var place = this;
-			
+
 			var lonlatsrc = new OpenLayers.LonLat(place.geometry.coordinates[0],
 					place.geometry.coordinates[1]);
 			var lonlattrans = lonlatsrc.transform(toProjection,fromProjection);//(place.lng, place.lat);
-			
+                      
 			var itemkey = place.properties.datakey;					
 			var item_left_li_id = _getSearchItemLeftLiID(itemkey);
 			var item_left_li_chkbox_id = _getSearchItemLeftLiChkboxID(itemkey);

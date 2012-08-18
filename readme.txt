@@ -1,5 +1,14 @@
 [readme.txt]
 
+***************************************************************************
+update at Aug-18, 2012
+
+1. add client-side interface for communicating with server
+
+- country list
+- crop list
+- search function
+- data export function - not complete yet
 
 ***************************************************************************
 update at Aug-15, 2012
