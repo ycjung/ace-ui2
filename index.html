@@ -122,7 +122,7 @@
 							<p>Select a country below list </p>				
 							<div data-role="fieldcontain" id="countryinputele">
 								<label for="country" style="width:350px">-Country:
-									<select id="country" data-mini="true"><option value=""></option></select>
+									<select id="country" data-mini="true" onchange="updateLocCat()"><option value=""></option></select>
 								</label>					
 							</div>
 							
@@ -148,7 +148,7 @@
 							</h3>
 							<div data-role="fieldcontain" id="cropinputele">
 								<label for="crop" style="width:350px">- Crop:
-									<select id="crop" data-mini="true"><option value=""></option></select>
+									<select id="crop" data-mini="true" onchange="updateCropCat()"><option value=""></option></select>
 								</label>
 							</div>
 						</div>

@@ -213,6 +213,19 @@ function _initDropdownBox(){
 	}	
 
 }
+function updateLocCat(){	
+	var locationCategory = $('#locationCB').is(':checked');
+	if(!locationCategory){
+		$('#locationCB').attr('checked',true).checkboxradio("refresh");
+	}
+}
+function updateCropCat(){	
+	var cropCategory = $('#cropCB').is(':checked');
+	if(!cropCategory){
+		$('#cropCB').attr('checked',true).checkboxradio("refresh");
+	}
+}
+
 var countryItemList = new Array();
 var cropItemList = new Array();
 function _getItemList(){

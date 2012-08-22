@@ -1,6 +1,15 @@
 [readme.txt]
 
 ***************************************************************************
+update at Aug-22, 2012
+
+1. fix bug: turn on check box of location category and crop category
+
+- if there are changes in the country or crop list selection, 
+mark a check on the category's check box 
+when the category check box of location or crop is unchecked
+
+***************************************************************************
 update at Aug-18, 2012
 
 1. add client-side interface for communicating with server
