@@ -76,7 +76,7 @@
 			<!-- footer -->
 			<div data-role="footer" class="ui-bar ui-bar-a">
 				<h3 style="display:inline-block;margin:0 0 0 0;">
-				AgMIP ACE-UI Prototype (ver 0.5) : last updated at 7/4/2012
+				AgMIP ACE-UI Prototype (ver 0.5) : last updated at Aug, 2012
 				</h3>
 			</div>			
 		  
@@ -118,7 +118,7 @@
 						<!-- 1. location search -->
 						<div id="locCat" data-role="collapsible" data-theme="b" data-content-theme="b" data-mini="true" data-collapsed="true">					
 							<h3>
-								<input type="checkbox" name="locationCB" id="locationCB" 
+								<input type="checkbox" name="locationCB" id="locationCB" onchange='collapseChangedLoc()'
 								class="custom" data-mini="true" data-theme="b" style="width:150px"/>
 								<label for="locationCB">Location</label>
 							</h3>
@@ -146,7 +146,7 @@
 						<!-- 2.crop search -->
 						<div id="cropCat" data-role="collapsible" data-theme="a" data-content-theme="b" data-collapsed="true">
 							<h3>
-								<input type="checkbox" name="cropCB" id="cropCB" 
+								<input type="checkbox" name="cropCB" id="cropCB" onchange='collapseChangedCrop()' 
 								class="custom" data-mini="true" data-theme="a" style="width:150px"/>
 								<label for="cropCB">Crop Type</label>
 							</h3>
@@ -160,7 +160,7 @@
 						<!-- 3. date search -->
 						<div id="dateCat" data-role="collapsible" data-theme="e" data-content-theme="b" data-collapsed="true">
 							<h3>
-								<input type="checkbox" name="phdateCB" id="phdateCB" 
+								<input type="checkbox" name="phdateCB" id="phdateCB" onchange='collapseChangedDate()' 
 								class="custom" data-mini="true" data-theme="e" style="width:150px"/>
 								<label for="phdateCB">Planting / Harvesting Year</label>
 							</h3>
@@ -212,7 +212,7 @@
 			<!-- footer -->
 			<div data-role="footer" class="ui-bar ui-bar-b">
 				<h3 style="display:inline-block;margin:0 0 0 0;">
-				AgMIP ACE-UI Prototype (ver 0.5) : last updated at 7/4/2012
+				AgMIP ACE-UI Prototype (ver 0.5) : last updated at Aug, 2012
 				</h3>
 			</div>	
 
@@ -221,21 +221,13 @@
 
 		<!-- ---------------------------------------------------------------------------------- -->
 		<!-- menu -> Data Tools Page -->
-		<!-- data tools sub page for export -->
-        <div data-role="page" id="datatoolsexportpage" data-add-back-btn="true">
-		
+		<!-- data tools page for export -->
+        <div data-role="page" id="datatoolsexportpage" data-add-back-btn="true">			
 			<div data-role="header" class="ui-bar ui-bar-c">
-				<h1>Data Export / Import Tool</h1>
+				<h1 style="display:inline-block;margin:0 0 10px 0;">Data Export Tool</h1>
 				<a href="#mappage" data-icon="home" >View Map</a>
 				<a href="#searchpage" data-icon="search" >Search Data</a>				
-				<!-- Export/Import Data nav bar -->
-				<div data-role="navbar" data-iconpos="left">
-					<ul>
-						<li><a href="#datatoolsexportpage" data-icon="grid" class="ui-btn-active">Export Data</a></li>
-						<li><a href="#datatoolsimportpage" data-icon="gear">Import Data</a></li>
-					</ul>
-				</div>
-			</div><br>
+			</div>
 
 			<!-- title pane : five column layout -->
 			<div class="ui-grid-d" style="height:70%">
@@ -253,7 +245,7 @@
 					<a href='#' onclick="remove_all_items()">remove all items</a> &nbsp;|<br><br>
 					<div class="ui-grid-a" >
 						<div class="ui-block-a ui-bar-e" style="margin: 0px 0 0 0;width:9%;">
-							<ul data-role="listview" data-inset="true" data-mini="true" id="datacart_items_chkbox"></ul>	
+							<ul style="align:middle" data-role="listview" data-inset="true" data-mini="true" id="datacart_items_chkbox"></ul>	
 						</div>
 						<div class="ui-block-b" style="width:91%" >
 							<ul data-role="listview" data-inset="true" id="datacart_items"></ul>
@@ -323,7 +315,7 @@
 			<!-- footer -->
 			<div data-role="footer" class="ui-bar ui-bar-b">
 				<h3 style="display:inline-block;margin:0 0 0 0;">
-				AgMIP ACE-UI Prototype (ver 0.5) : last updated at 7/4/2012
+				AgMIP ACE-UI Prototype (ver 0.5) : last updated at Aug, 2012
 				</h3>
 			</div>	
 			
@@ -334,20 +326,14 @@
         <div data-role="page" id="datatoolsimportpage" data-add-back-btn="true">
 		
 			<div data-role="header" class="ui-bar ui-bar-c">
-				<h1>Data Export / Import Tool</h1>
+				<h1 style="display:inline-block;margin:0 0 10px 0;">Data Import Tool</h1>
 				<a href="#mappage" data-icon="home" >View Map</a>
 				<a href="#searchpage" data-icon="search" >Search Data</a>				
-				<!-- Export/Import Data nav bar -->
-				<div data-role="navbar" data-iconpos="left">
-					<ul>
-						<li><a href="#datatoolsexportpage" data-icon="grid">Export Data</a></li>
-						<li><a href="#datatoolsimportpage" data-icon="gear" class="ui-btn-active">Import Data</a></li>
-					</ul>
-				</div>
 			</div>
 
 			<!-- title pane: five column layout -->
 			<div class="ui-grid-d" style="height:70%">
+				<h2 align=middle> Under construction </h3>
 				<div class="ui-block-a" style="width:3%">&nbsp;</div>
 				<!-- left side otions -->
 				<div class="ui-block-b" style="width:3%">&nbsp;</div>
@@ -355,22 +341,21 @@
 				<div class="ui-block-c" style="width:4%">&nbsp;</div>
 				<!-- right side result -->
 				<div class="ui-block-d" style="width:50%">
-					<h3> * Menu A</h3>
 					<!-- ul data-role="listview" data-inset="true" id="search_results"></ul -->
 				</div>
 				<!-- right blank -->
-				<div class="ui-block-e" style="width:40%">				
-				    <h3> * Menu B</h3>					
+				<div class="ui-block-e" style="width:40%">							
 				</div>			
 			</div>
 			
 			<br><br><br><br><br><br><br><br><br><br><br>
 			<br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br>
 			
 			<!-- footer -->
 			<div data-role="footer" class="ui-bar ui-bar-b">
 				<h3 style="display:inline-block;margin:0 0 0 0;">
-				AgMIP ACE-UI Prototype (ver 0.5) : last updated at 7/4/2012
+				AgMIP ACE-UI Prototype (ver 0.5) : last updated at Aug, 2012
 				</h3>
 			</div>	
 			

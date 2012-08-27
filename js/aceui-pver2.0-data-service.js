@@ -15,7 +15,7 @@ function isConnected(){
         url: rootURL,
         dataType: "html",
         success: function(data){
-            alert('System runs on Online Mode');
+            //alert('System runs on Online Mode');
             isConnectedToWebServer = true;
         },
         error: function(jqXHR, textStatus, errorThrown){

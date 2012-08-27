@@ -150,7 +150,6 @@ function displayDatacartItems(data){
 			.appendTo('#datacart_items')
 			.show();
 	}else{
-	
 		//left header
 		$('<li>')
 			.hide()
@@ -172,8 +171,7 @@ function displayDatacartItems(data){
 				text: 'Your cart holds '+data.features.length+' datasets.'
 			}))
 			.appendTo('#datacart_items')
-			.show();
-			
+			.show();	
 		// for each row of item	
 		$.each(data.features, function(i) {			
 			var place = this;
@@ -190,8 +188,8 @@ function displayDatacartItems(data){
 			//left checkboxs
 			$('<li>')
 				.hide()
-				.attr('id', dcleftLidId)
-				.attr('style','height:115px')	
+				.attr('style','height:115px')
+				.attr('id', dcleftLidId)					
 				.append($('<input />', {
 					type: 'checkbox',
 					id: dcchkboxId
@@ -234,33 +232,34 @@ function displayDatacartItems(data){
 				.show();
 		});
 	}
-	
-	$('#datacart_items_chkbox').listview('refresh');
-	$('#datacart_items').listview('refresh');
-	$.mobile.pageLoading(true);
+	//alert('1-3-1');	
+	$("#datacart_items_chkbox").listview("refresh", true);
+	//alert('1-3-2');	
+	$("#datacart_items").listview("refresh", true);
+	//alert('1-4');	
+	//$.mobile.pageLoading(true);
+	//alert('1-5');	
 } 
 // top row of data cart
 function displayDataCartTopRow(){
-	/*
-	//left header
 	$('<li>')
 		.hide()
-		.attr('style','height:15px')
+		.attr('style','height:25px')
+		.attr('id', dcLeftHeader)
 		.append($('<h3 />', {
 			text: '#'
 		}))
 		.appendTo('#datacart_items_chkbox')
-		.show();
-		*/
+		.show();	
 	$('<li>')
 		.hide()
-		.attr('style','height:15px')
+		.attr('style','height:25px;margin:10px 10px 10px 10px;')
 		.append($('<h4 />', {
 			text: 'Your cart holds 0 datasets.'
+			//style:'margin:10px 10px 10px 10px;height:30px;' 
 		}))
 		.appendTo('#datacart_items')
-		.show();	
-	
+		.show();		
 }  
 // clear contents in forms
 function clearQueueList(){

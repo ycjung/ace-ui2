@@ -30,6 +30,11 @@ var init = function (onSelectFeatureFunction) {
 	var searchstrategy = new OpenLayers.Strategy.Cluster({distance:50});	
 	var datacartstrategy = new OpenLayers.Strategy.Cluster({distance:50});
 
+	var thisfontSize = "16px";
+	if($.browser.msie) thisfontSize = "14px";
+	var thisYOffset = "16";
+	if($.browser.msie) thisYOffset = "4";
+	
 	var searchstyle = new OpenLayers.Style(
 		{		
 		externalGraphic: "${image}",
@@ -37,13 +42,13 @@ var init = function (onSelectFeatureFunction) {
 		graphicHeight: 35,graphicYOffset: -26,	
 							
 		label : "${name}",			
-		fontColor: "white",fontSize: "18px",
+		fontColor: "white",fontSize: thisfontSize,
 		fontFamily: "Courier New, monospace",
 		fontWeight: "bold",labelAlign: "ct", //cm, cb
 		// positive value moves the label to the right
 		labelXOffset: "0",
 		// negative value moves the label down
-		labelYOffset: "16"					
+		labelYOffset: thisYOffset					
 		},
 		{ context: {
 					name: function(feature) {
@@ -75,13 +80,13 @@ var init = function (onSelectFeatureFunction) {
 		graphicHeight: 35,graphicYOffset: -26,	
 							
 		label : "${name}",			
-		fontColor: "white",fontSize: "18px",
+		fontColor: "white",fontSize: thisfontSize,
 		fontFamily: "Courier New, monospace",
 		fontWeight: "bold",labelAlign: "ct", //cm, cb
 		// positive value moves the label to the right
 		labelXOffset: "0",
 		// negative value moves the label down
-		labelYOffset: "16"					
+		labelYOffset: thisYOffset					
 		},
 		{ context: {
 					name: function(feature) {

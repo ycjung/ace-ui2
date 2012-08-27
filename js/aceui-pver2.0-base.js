@@ -141,9 +141,13 @@ $(document).ready(function() {
     $('#datatoolsexportpage').live('pageshow',function(event, ui){
 
 		if(datacartFeaturesObj.features.length == 0){
+		//_init_lists();
 			// first row
 			displayDataCartTopRow();			
 		}else{
+			//alert('call 1');
+			//updateDatacartList();
+			//alert('call 3');
 			//$('#datatoolsexportpage').reload(true);
 		}
 		
@@ -166,11 +170,18 @@ $(document).ready(function() {
 			var data = datacartFeaturesObj;	
 			displayDatacartItems(data);
 		});
-					
+								
         // only listen to the first event triggered
         $('#datatoolsexportpage').die('pageshow', arguments.callee);		
 	});
 	
+
+	$('#datatoolsexportpage').live('pageinit', function(event){
+
+		updateDatacartList();
+		
+	});
+
 	//init data cart
 	resetDatacart();
 
@@ -178,6 +189,19 @@ $(document).ready(function() {
         isConnected();
 
 });
+
+/*
+function _init_lists(){
+	$("#datacart_items_chkbox").each(function(){
+		$(this).listview();
+		$(this).listview("refresh", true);
+	});
+	$("#datacart_items").each(function(){
+		$(this).listview();
+		$(this).listview("refresh", true);
+	});
+}
+*/
 
 
 /**

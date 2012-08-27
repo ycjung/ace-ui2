@@ -463,8 +463,30 @@ function displaySearchResultTopRow(){
 		.appendTo('#search_results')
 		.show();
 }
-
-
-
+// manipulate collapse div
+function collapseChangedLoc(){	
+	var isLocChecked = $('#locationCB').is(':checked');	
+	if(isLocChecked){//will true, then need to expand
+		$('#locCat').trigger('expand');
+	}else{//need to collapse
+		$('#locCat').trigger('collapse');
+	}	
+}
+function collapseChangedCrop(){	
+	var isCropChecked = $('#cropCB').is(':checked');	
+	if(isCropChecked){//will true, then need to expand
+		$('#cropCat').trigger('expand');
+	}else{//need to collapse
+		$('#cropCat').trigger('collapse');
+	}	
+}
+function collapseChangedDate(){	
+	var isDateChecked = $('#phdateCB').is(':checked');	
+	if(isDateChecked){//will true, then need to expand
+		$('#dateCat').trigger('expand');
+	}else{//need to collapse
+		$('#dateCat').trigger('collapse');
+	}	
+}
 
 

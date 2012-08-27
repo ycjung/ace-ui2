@@ -1,11 +1,17 @@
 [readme.txt]
 
+
+***************************************************************************
+update at Aug-27, 2012
+
 1.On the Data Cart window: The checkboxes for items in the data cart were not aligned with data; the checkboxes were tiny when I first went to the window. When I refreshed the list it was OK, except the size of the checkboxes are a little bit too small, so for more than about 10 experiments, the boxes do not align.
+-> fixed
 
 2.In the search options, when the 'crop type' category is selected, the options box closes.  It should be the opposite action. If the user selects the crop type category, the options should expand, or stay expanded.  Unclick the category should contract the options (or leave them contracted).
+-> fixed
 
 3.Import and Export need to be separate, not both part of a single page.  Maybe the main functions should be Search, Map, Export, Import.  Search, data cart and export are all pieces of the same function.  Data import is separate.  Both Import and Export functions use the map.
-
+-> seperated
 
 
 ***************************************************************************
