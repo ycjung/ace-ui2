@@ -48,13 +48,16 @@ function _removeDataFromSelectedObject(datakey){
 /**
  * display
  */
+var searchRightHeader = 'searchRightHeader';
+var searchLeftHeader = 'searchLeftHeader';
 function displaySearchItems(data){
     
 	if(data.features.length == 0){
 		$('<li>')
 			.hide()
+			.attr('style','height:25px')
 			.append($('<h2 />', {
-				text: 'Your search returned 0 data.'
+				text: 'Your search returned 0 datasets.'
 			}))
 			.appendTo('#search_results')
 			.show();
@@ -62,17 +65,21 @@ function displaySearchItems(data){
 		//left header
 		$('<li>')
 			.hide()
+			.attr('id', searchLeftHeader)
+			.attr('style','height:25px')
 			.append($('<h3 />', {
-				text: '#',
-				style:'height:25px'
+				text: '#'
+				//style:'height:25px'
 			}))
 			.appendTo('#search_results_chkbox')
 			.show();
 		//right header	
 		$('<li>')
 			.hide()
-			.append($('<h2 />', {
-				text: 'Your search returned below data.' //+data.features.length+' data.'
+			.attr('id', searchRightHeader)
+			.attr('style','height:25px')
+			.append($('<h3 />', {
+				text: 'Your search returned '+data.features.length+' datasets.' //+data.features.length+' data.'
 			}))
 			.appendTo('#search_results')
 			.show();
@@ -94,10 +101,11 @@ function displaySearchItems(data){
 			$('<li>')
 				.hide()
 				.attr('id', item_left_li_id)
+				.attr('style','height:160px')
 				.append($('<input />', {
 					type: 'checkbox',
-					id: item_left_li_chkbox_id,
-					style:'height:160px'
+					id: item_left_li_chkbox_id
+					//style:'vertical-align: middle'
 				}))
 				.appendTo('#search_results_chkbox')
 				.show();
@@ -105,6 +113,7 @@ function displaySearchItems(data){
 			$('<li>')
 				.hide()
 				.attr('id', item_right_li_id)
+				.attr('style','height:160px')
 				.append($('<h3 />', {
 					html: '['+(i+1)+'] '+place.properties.datakey 
 						+'&nbsp;&nbsp;&nbsp;<button type="submit" onclick'
@@ -161,6 +170,13 @@ function displaySearchItems(data){
 // update map
 function updateSearchedItem(){
 	_updatePlot(selectedFeaturesObj);
+	
+	$('#'+searchLeftHeader)
+		.html('<h3 valign=middle>#</h3>')
+
+	$('#'+searchRightHeader)
+		.html('<h3 valign=middle>Your search returned '+selectedFeaturesObj.features.length+' datasets.</h3>')
+
 }
 
 /**

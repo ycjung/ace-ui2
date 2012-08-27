@@ -19,7 +19,7 @@ function isConnected(){
             isConnectedToWebServer = true;
         },
         error: function(jqXHR, textStatus, errorThrown){
-            alert('System runs on Local mode');
+            //alert('System runs on Local mode');
             isConnectedToWebServer = false;
         }
     });

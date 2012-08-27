@@ -125,31 +125,51 @@ function downloaddata(){
  * display
  */
 // display
+var dcRightHeader = 'dcRightHeader';
+var dcLeftHeader = 'dcLeftHeader';
 function displayDatacartItems(data){
 
 	if(data.features.length == 0){
+		//left header
 		$('<li>')
 			.hide()
-			.append($('<h2 />', {
-				text: 'Your queue holds 0 data.'
+			.attr('style','height:25px')
+			.append($('<h3 />', {
+				text: '#'
+				//style:'height:15px'
+			}))
+			.appendTo('#datacart_items_chkbox')
+			.show();
+		$('<li>')
+			.hide()
+			.attr('style','height:25px')
+			.append($('<h3 />', {
+				//style:'height:15px',
+				text: 'Your cart holds 0 datasets.'
 			}))
 			.appendTo('#datacart_items')
 			.show();
 	}else{
+	
 		//left header
 		$('<li>')
 			.hide()
+			.attr('style','height:25px')
+			.attr('id', dcLeftHeader)
 			.append($('<h3 />', {
-				text: '#',
-				style:'height:25px'
+				text: '#'
+				//style:'height:25px'
 			}))
 			.appendTo('#datacart_items_chkbox')
 			.show();
 		//right header	
 		$('<li>')
 			.hide()
+			.attr('style','height:25px')
+			.attr('id', dcRightHeader)
 			.append($('<h2 />', {
-				text: 'Your queue holds below data.' //+data.features.length+' data.'
+				//style:'height:25px',
+				text: 'Your cart holds '+data.features.length+' datasets.'
 			}))
 			.appendTo('#datacart_items')
 			.show();
@@ -171,10 +191,10 @@ function displayDatacartItems(data){
 			$('<li>')
 				.hide()
 				.attr('id', dcleftLidId)
+				.attr('style','height:115px')	
 				.append($('<input />', {
 					type: 'checkbox',
-					id: dcchkboxId,
-					style:'height:110px'
+					id: dcchkboxId
 				}))
 				.appendTo('#datacart_items_chkbox')
 				.show();
@@ -182,6 +202,7 @@ function displayDatacartItems(data){
 			$('<li>')
 				.hide()
 				.attr('id', dcrightLidId)
+				.attr('style','height:115px')
 				.append($('<h2 />', {
 					text: '['+(i+1)+'] '+place.properties.datakey
 				}))
@@ -220,13 +241,26 @@ function displayDatacartItems(data){
 } 
 // top row of data cart
 function displayDataCartTopRow(){
+	/*
+	//left header
 	$('<li>')
 		.hide()
+		.attr('style','height:15px')
+		.append($('<h3 />', {
+			text: '#'
+		}))
+		.appendTo('#datacart_items_chkbox')
+		.show();
+		*/
+	$('<li>')
+		.hide()
+		.attr('style','height:15px')
 		.append($('<h4 />', {
-			text: 'Your queue holds 0 data.'
+			text: 'Your cart holds 0 datasets.'
 		}))
 		.appendTo('#datacart_items')
-		.show();		
+		.show();	
+	
 }  
 // clear contents in forms
 function clearQueueList(){
@@ -254,6 +288,16 @@ function updateDatacartList(){
 // update map
 function updateDataCartItem(){
 	_updateDataCartPlot(datacartFeaturesObj);
+	
+	updateDataCartListHeader();
+}
+function updateDataCartListHeader(){
+	$('#'+dcLeftHeader)
+		.html('<h3 valign=middle>#</h3>')
+
+	$('#'+dcRightHeader)
+		.html('<h3 valign=middle>Your cart holds '+datacartFeaturesObj.features.length+' datasets.</h3>')
+
 }
 /**
  * data item control functions
@@ -292,6 +336,7 @@ function remove_selected_items(){
 		}	
 	});	
 	$('#datacart_contentview').empty();
+	updateDataCartListHeader();
 }
 function remove_all_items(){
 	$('#datacart_items_chkbox').find(':input').each(function(){
@@ -311,6 +356,7 @@ function remove_all_items(){
 		}	
 	});
 	$('#datacart_contentview').empty();
+	updateDataCartListHeader();
 }
 
 

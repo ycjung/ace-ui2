@@ -8,7 +8,10 @@
 		
         <link rel="stylesheet"  href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
         <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>	
+        <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<!-- link rel="stylesheet"  href="./css/jquery.mobile-1.1.0.min.css" />
+        <script src="./js/jquery-1.7.1.min.js"></script>
+        <script src="./js/jquery.mobile-1.1.0.min.js"></script -->		
 
 
         <link rel="stylesheet" href="./css/aceui.style.a.css" type="text/css">
@@ -51,9 +54,10 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			
 				|<a href="#searchpage" data-icon="search" data-role="button" >Search</a>|            
-				<a href="#datatoolsexportpage" data-icon="datatool" data-role="button">Data Tools</a>|
+				<a href="#datatoolsexportpage" data-icon="datatool" data-role="button">Export</a>|
+				<a href="#datatoolsimportpage" data-icon="gear" data-role="button">Imports</a>|
 				<a href="#userguidepage" data-icon="userguide" data-role="button">User Guide</a>|
-				<a href="#layerspage" data-icon="layers" data-role="button">Layers</a>|
+				<a href="#layerspage" data-icon="layers" data-role="button">Map Layers</a>|
 				</h3>
 			</div>		
 
@@ -85,7 +89,7 @@
 			<div data-role="header" class="ui-bar ui-bar-c">
 				<h1 style="display:inline-block;margin:0 0 10px 0;">Search Simulation Data</h1>
 				<a href="#mappage" data-icon="home" >View Map</a>
-				<a href="#datatoolsexportpage" data-icon="gear">Data Tools</a>			
+				<a href="#datatoolsexportpage" data-icon="gear" >Data Tools</a>			
 			</div><br>
 
 			<!-- button group : four column layout -->		
@@ -239,7 +243,7 @@
 				<div class="ui-block-a" style="width:3%">&nbsp;</div>
 				<!-- left list -->
 				<div class="ui-block-b" style="width:50%">
-					<h3> * Items in Data Cart</h3>
+					<h3 align=middle> * Items in Data Cart</h3>
 					&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;
 					<a href='#' onclick="select_all_items_in_queue()">select all</a> &nbsp;|&nbsp;
 					<a href='#' onclick="reset_queue_item_selection()">clear selection</a> &nbsp;|&nbsp;
@@ -251,7 +255,7 @@
 						<div class="ui-block-a ui-bar-e" style="margin: 0px 0 0 0;width:9%;">
 							<ul data-role="listview" data-inset="true" data-mini="true" id="datacart_items_chkbox"></ul>	
 						</div>
-						<div class="ui-block-b" style="width:91%">
+						<div class="ui-block-b" style="width:91%" >
 							<ul data-role="listview" data-inset="true" id="datacart_items"></ul>
 						</div>
 					</div>					
@@ -260,14 +264,8 @@
 				<div class="ui-block-c" style="width:4%">&nbsp;</div>
 				<!-- right content view -->
 				<div class="ui-block-d" style="width:40%">
-					<h3> * Detail Data Information</h3><br><br>
-					<!-- four column layout -->
-					<div class="ui-grid-c">
-						<div class="ui-block-a" style="width:10%">&nbsp;</div>
-						<div class="ui-block-b" style="width:40%"><button type="submit" data-theme="a" data-mini="true" id="downloaddata">Download</button></div>
-						<div class="ui-block-c" style="width:40%"><button type="submit" data-theme="a" data-mini="true" id="requestdata">Request</button></div>
-						<div class="ui-block-d" style="width:10%">&nbsp;</div>
-					</div>
+					<h3 align=middle> * Export Data</h3>
+					
 					<!-- export format selector-->
 					<div id="exportAppFormat" data-role="collapsible" data-theme="c" data-content-theme="b" data-mini="true" data-collapsed="false">
 						<h3>Choose download data format below:</h3>
@@ -303,6 +301,15 @@
 							</fieldset>
 						</div>
 					</div>
+					<!-- four column layout -->
+					<div class="ui-grid-c">
+						<div class="ui-block-a" style="width:10%">&nbsp;</div>
+						<div class="ui-block-b" style="width:40%"><button type="submit" data-theme="a" data-mini="true" id="downloaddata">Download</button></div>
+						<div class="ui-block-c" style="width:40%"><button type="submit" data-theme="a" data-mini="true" id="requestdata">Request</button></div>
+						<div class="ui-block-d" style="width:10%">&nbsp;</div>
+					</div>
+					<br>
+					<h3 align=middle> * Detail Data Information</h3>
 					<!-- selected data content view -->
 					<div class="ui-bar-d" style="padding: 0 0 0 0;height:400px">
 						<ul data-role="listview" data-inset="true" id="datacart_contentview"></ul>
@@ -430,7 +437,7 @@
 		<!-- menu -> Layers Page -->
 		<div data-role="page" id="layerspage" data-add-back-btn="true">
 			<div data-role="header" class="ui-bar ui-bar-c">
-				<h1 style="display:inline-block;margin:0 0 10px 0;">Layers</h1>
+				<h1 style="display:inline-block;margin:0 0 10px 0;">Map Layers</h1>
 			</div>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslist"></ul>

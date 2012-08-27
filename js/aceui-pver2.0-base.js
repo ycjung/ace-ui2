@@ -140,11 +140,13 @@ $(document).ready(function() {
 	// data tool export page show
     $('#datatoolsexportpage').live('pageshow',function(event, ui){
 
-	
 		if(datacartFeaturesObj.features.length == 0){
 			// first row
-			displayDataCartTopRow();
+			displayDataCartTopRow();			
+		}else{
+			//$('#datatoolsexportpage').reload(true);
 		}
+		
 		$('#downloaddata').click(function(e){
                     if(isConnectedToWebServer){
 			downloaddata();
