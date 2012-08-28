@@ -335,7 +335,8 @@ function remove_selected_items(){
 		}	
 	});	
 	$('#datacart_contentview').empty();
-	updateDataCartListHeader();
+	updateDataCartItem();
+	//updateDataCartListHeader();
 }
 function remove_all_items(){
 	$('#datacart_items_chkbox').find(':input').each(function(){
@@ -355,7 +356,8 @@ function remove_all_items(){
 		}	
 	});
 	$('#datacart_contentview').empty();
-	updateDataCartListHeader();
+	//updateDataCartListHeader();
+	updateDataCartItem();
 }
 
 

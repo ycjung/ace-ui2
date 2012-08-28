@@ -141,14 +141,10 @@ $(document).ready(function() {
     $('#datatoolsexportpage').live('pageshow',function(event, ui){
 
 		if(datacartFeaturesObj.features.length == 0){
-		//_init_lists();
 			// first row
 			displayDataCartTopRow();			
 		}else{
 			//alert('call 1');
-			//updateDatacartList();
-			//alert('call 3');
-			//$('#datatoolsexportpage').reload(true);
 		}
 		
 		$('#downloaddata').click(function(e){
